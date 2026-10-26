@@ -1,102 +1,135 @@
 # 🌍 AirAware — Community Air Quality Intelligence
 
-**AirAware** is a data analysis and machine learning project that explores air quality observations across India. Built using R, the project applies data cleaning, exploratory data analysis, statistical anomaly detection, and K-means clustering to identify patterns in pollutant measurements.
+AirAware is a data analysis and unsupervised machine learning project that explores air quality observations from monitoring stations across India. Developed using R, the project applies data cleaning, exploratory data analysis, statistical anomaly detection, and K-means clustering to investigate patterns in pollutant measurements.
 
-The goal is to transform raw air quality data into meaningful insights that can support further environmental analysis and public awareness.
+The project aims to transform raw air quality observations into interpretable insights and establish a foundation for future environmental data analysis applications.
 
-> **Project status:** Initial data analysis and clustering completed.
+**Project status:** Initial data analysis, anomaly detection, and clustering completed.
 
-## 📌 Problem Statement
+## Table of Contents
 
-Air pollution is an important environmental and public health concern. Air quality datasets can contain missing values, inconsistent observations, and unusual measurements that make analysis challenging.
+* [Problem Statement](#problem-statement)
+* [Objectives](#objectives)
+* [Features](#features)
+* [Technology Stack](#technology-stack)
+* [Dataset](#dataset)
+* [Project Workflow](#project-workflow)
+* [Results and Observations](#results-and-observations)
+* [Visualizations](#visualizations)
+* [Project Structure](#project-structure)
+* [Installation and Usage](#installation-and-usage)
+* [Limitations](#limitations)
+* [Future Enhancements](#future-enhancements)
+* [Learning Outcomes](#learning-outcomes)
+* [Data Attribution and Licensing](#data-attribution-and-licensing)
+* [Author](#author)
 
-AirAware explores how data analysis and unsupervised machine learning can help organize air quality observations, identify statistical outliers, and discover similarities between monitoring stations.
+## Problem Statement
 
-## 🎯 Objectives
+Air pollution is an important environmental and public health concern. Analysing air quality observations can be challenging because datasets may contain missing measurements, incomplete monitoring station coverage, and unusual values.
 
-* Clean and prepare air quality data for analysis.
-* Explore the distribution of different pollutants.
-* Compare pollutant measurements across available observations.
+AirAware explores how statistical analysis and unsupervised machine learning can help clean air quality data, summarize pollutant measurements, identify statistical outliers, and group monitoring stations with similar pollutant profiles.
+
+The project is intended for exploratory analysis and educational purposes. Its outputs are not official air quality assessments.
+
+## Objectives
+
+* Clean and preprocess air quality observations for analysis.
+* Examine the distribution and availability of different pollutant measurements.
+* Calculate descriptive statistics for individual pollutants.
 * Detect statistically unusual pollutant readings using the Interquartile Range (IQR) method.
 * Group monitoring stations using K-means clustering.
-* Visualize the findings using plots generated in R.
-* Build a foundation for future environmental intelligence applications.
+* Visualize key findings through plots generated in R.
+* Establish a reproducible foundation for future environmental data applications.
 
-## ✨ Features
+## Features
 
-### 1. Data Cleaning
+### 1. Data Cleaning and Preprocessing
 
 * Identifies missing pollutant measurements.
 * Removes records with missing essential values.
 * Filters invalid geographic coordinates and negative average pollutant readings.
-* Saves the cleaned dataset for further analysis.
+* Produces a cleaned dataset for downstream analysis.
 
 ### 2. Exploratory Data Analysis
 
-* Examines the number of observations available for each pollutant.
-* Calculates average, median, and maximum pollutant readings.
-* Visualizes pollutant distributions and city-level observations.
+* Examines the number of available observations for each pollutant.
+* Calculates average, median, and maximum pollutant measurements.
+* Generates visualizations to support comparisons across pollutants and cities.
 
 ### 3. Statistical Anomaly Detection
 
-* Uses the Interquartile Range method to identify unusually high pollutant readings.
-* Saves flagged observations for further investigation.
-* Helps identify measurements that may deserve additional attention.
+* Applies the IQR method to identify unusually high average pollutant readings.
+* Saves flagged observations for further examination.
+* Distinguishes statistical outliers from confirmed environmental incidents.
 
 ### 4. K-Means Clustering
 
-* Organizes monitoring stations using their pollutant measurements.
-* Standardizes pollutant features before clustering.
-* Uses K-means with three clusters.
-* Compares average pollutant measurements across the resulting clusters.
+* Aggregates pollutant measurements by monitoring station.
+* Selects stations with complete measurements for the seven pollutant features.
+* Standardizes pollutant variables before clustering.
+* Applies K-means with three clusters.
+* Compares pollutant profiles across the resulting groups.
 
 ### 5. Data Visualization
 
-Generates plots to make the results easier to interpret.
+Generates plots summarizing pollutant observation counts, average measurements, city-level observations, and station clusters.
 
-## 🛠️ Tech Stack
+## Technology Stack
 
-* **Programming language:** R
-* **Development environment:** RStudio
-* **Machine learning:** K-means clustering
-* **Statistical method:** Interquartile Range (IQR)
-* **Visualization:** R plotting functions
-* **Version control:** Git and GitHub
+| Component                     | Technology                |
+| ----------------------------- | ------------------------- |
+| Programming language          | R                         |
+| Development environment       | RStudio                   |
+| Data cleaning and analysis    | Base R                    |
+| Statistical anomaly detection | Interquartile Range (IQR) |
+| Unsupervised machine learning | K-means clustering        |
+| Visualization                 | R plotting functions      |
+| Version control               | Git                       |
+| Repository hosting            | GitHub                    |
 
-## 📊 Dataset
+## Dataset
 
-The project uses the dataset titled **Real Time Air Quality Index from Various Locations**, obtained from the Government of India's Open Government Data platform.
+The project uses the dataset titled **Real Time Air Quality Index from Various Locations**, published through the Government of India's Open Government Data platform.
 
 * **Data provider:** Central Pollution Control Board (CPCB)
-* **Platform:** Government of India Open Government Data (OGD)
-* **Dataset source:** https://www.data.gov.in/resource/real-time-air-quality-index-various-locations
+* **Platform:** Open Government Data (OGD), Government of India
+* **Official dataset resource:** [Real Time Air Quality Index from Various Locations](https://www.data.gov.in/resource/real-time-air-quality-index-various-locations)
 
 The downloaded snapshot contained 3,682 rows and 11 columns, including location information, monitoring station details, observation timestamps, pollutant identifiers, and minimum, maximum, and average pollutant measurements.
 
-The dataset contains pollutant identifiers such as:
+The seven pollutant identifiers used in the analysis are:
 
-* CO — Carbon Monoxide
-* NH3 — Ammonia
-* NO2 — Nitrogen Dioxide
-* OZONE — Ozone
-* PM10 — Particulate Matter 10
-* PM2.5 — Particulate Matter 2.5
-* SO2 — Sulphur Dioxide
+| Identifier | Pollutant                                                                              |
+| ---------- | -------------------------------------------------------------------------------------- |
+| CO         | Carbon monoxide                                                                        |
+| NH3        | Ammonia                                                                                |
+| NO2        | Nitrogen dioxide                                                                       |
+| OZONE      | Ozone                                                                                  |
+| PM10       | Particulate matter with an aerodynamic diameter of up to approximately 10 micrometres  |
+| PM2.5      | Particulate matter with an aerodynamic diameter of up to approximately 2.5 micrometres |
+| SO2        | Sulphur dioxide                                                                        |
 
-**Data availability:** The raw and derived CSV files are excluded from the initial Git upload until the licence terms for the specific dataset resource have been verified. Obtain the dataset from its official source before running the scripts.
+The numerical measurements and their units should be interpreted according to the source dataset's documentation.
 
-## 🔄 Project Workflow
+**Data availability:** Raw and generated CSV files are excluded from the Git repository while the licence applicable to the specific dataset resource is verified. Users must obtain the dataset from its official source before running the analysis.
 
-1. **Data collection:** Obtain the air quality dataset from the official source.
+## Project Workflow
+
+The analysis follows this sequence:
+
+1. **Data collection:** Obtain the source dataset and place it in the expected project directory.
 2. **Data cleaning:** Remove records with missing essential measurements and filter invalid values.
 3. **Exploratory analysis:** Calculate descriptive statistics and generate visualizations.
 4. **Anomaly detection:** Apply the IQR method to flag unusually high average pollutant readings.
-5. **Feature preparation:** Organize pollutant measurements by monitoring station and retain stations with complete measurements for all seven pollutants.
-6. **Feature scaling:** Standardize the pollutant variables before clustering.
+5. **Station-level feature preparation:** Organize pollutant measurements by monitoring station and retain stations with complete measurements for all seven pollutant features.
+6. **Feature scaling:** Standardize the pollutant variables so differences in numerical scales do not dominate the distance-based clustering.
 7. **K-means clustering:** Group monitoring stations into three clusters.
 8. **Interpretation:** Compare cluster profiles and examine station-level pollutant measurements.
 
-## 📈 Results and Observations
+## Results and Observations
+
+The results below describe the downloaded dataset snapshot used during development. They should not be interpreted as current air quality readings.
 
 ### Data Cleaning
 
@@ -107,85 +140,84 @@ The dataset contains pollutant identifiers such as:
 | Cleaned records                 |  3,338 |
 | Original columns                |     11 |
 
-The cleaned dataset contains 3,338 records after removing observations with missing essential pollutant measurements and filtering invalid values.
+The cleaning process retained 3,338 records after removing observations with missing essential pollutant measurements and filtering invalid values.
 
-### Pollutant Analysis
+### Pollutant Observation Counts
 
-The number of available observations differed by pollutant.
+| Pollutant | Number of records |
+| --------- | ----------------: |
+| CO        |               508 |
+| OZONE     |               502 |
+| NO2       |               484 |
+| PM10      |               474 |
+| PM2.5     |               473 |
+| SO2       |               460 |
+| NH3       |               437 |
 
-| Pollutant | Records |
-| --------- | ------: |
-| CO        |     508 |
-| OZONE     |     502 |
-| NO2       |     484 |
-| PM10      |     474 |
-| PM2.5     |     473 |
-| SO2       |     460 |
-| NH3       |     437 |
-
-These counts describe the cleaned dataset and should not be interpreted as pollution severity.
+The number of observations differs across pollutants. These counts describe data availability and do not indicate pollution severity.
 
 ### Anomaly Detection
 
-The IQR method flagged **115 observations** as unusually high relative to the distribution of their respective pollutant measurements.
+The IQR-based anomaly detection process flagged **115 observations** as unusually high relative to the distribution of the corresponding pollutant measurements.
 
-Examples included high PM2.5 readings in locations such as Noida and Delhi.
+Examples included high PM2.5 measurements in locations such as Noida and Delhi.
 
-These are statistical outliers, not confirmed pollution emergencies. Unusual observations may represent genuine environmental conditions, measurement issues, or other factors that require further investigation.
+These observations are statistical outliers, not confirmed pollution emergencies. They may represent genuine environmental conditions, measurement errors, or other factors that require further investigation.
 
 ### Monitoring Station Coverage
 
-| Metric                                         | Result |
-| ---------------------------------------------- | -----: |
-| Cleaned observations                           |  3,338 |
-| Unique cities represented                      |    273 |
-| Unique monitoring stations                     |    526 |
-| Stations with all seven pollutant measurements |    377 |
+| Metric                                                       | Result |
+| ------------------------------------------------------------ | -----: |
+| Cleaned observations                                         |  3,338 |
+| Unique cities represented                                    |    273 |
+| Unique monitoring stations                                   |    526 |
+| Stations with complete measurements for all seven pollutants |    377 |
 
-For clustering, the analysis retained the 377 stations with complete measurements for all seven pollutant features.
+The clustering analysis retained 377 stations with complete measurements for all seven pollutant features.
 
 ### K-Means Clustering
 
-The project applied K-means clustering with three clusters after standardizing the pollutant measurements.
+K-means clustering was applied to standardized pollutant measurements using three clusters.
 
-| Cluster   | Number of Stations | General Observation                                                             |
+| Cluster   | Number of stations | General observation                                                             |
 | --------- | -----------------: | ------------------------------------------------------------------------------- |
 | Cluster 1 |                 68 | Higher average PM2.5, PM10, CO, and NO2 measurements                            |
 | Cluster 2 |                108 | Intermediate particulate measurements and the highest average ozone measurement |
 | Cluster 3 |                201 | Lower average particulate, CO, and NO2 measurements                             |
 
-Cluster labels are algorithm-generated identifiers, not official air quality categories.
+The cluster numbers are algorithm-generated identifiers and do not represent an official ranking.
 
-The clusters describe similarities in the selected measurements. They should not be interpreted as formal health-risk classifications.
+These groups describe similarities in the selected pollutant measurements. They are not official air quality categories or health-risk classifications. The results also depend on the selected features, preprocessing, scaling, and number of clusters.
 
-## 📉 Visualizations
+## Visualizations
 
 The project generates the following plots:
 
-| Plot                       | Description                                      |
-| -------------------------- | ------------------------------------------------ |
-| `pollutant_counts.png`     | Number of observations for each pollutant        |
-| `pollutant_averages.png`   | Average measurements for each pollutant          |
-| `top_10_cities.png`        | City-level observations included in the analysis |
-| `air_quality_clusters.png` | Visualization of the resulting clusters          |
+| File                       | Description                                         |
+| -------------------------- | --------------------------------------------------- |
+| `pollutant_counts.png`     | Number of observations available for each pollutant |
+| `pollutant_averages.png`   | Average measurements for each pollutant             |
+| `top_10_cities.png`        | City-level observations included in the analysis    |
+| `air_quality_clusters.png` | Visualization of the resulting clusters             |
 
-The images are available in the `plots/` directory.
+The generated images are stored in the `plots/` directory.
 
-**Note:** Pollutants can use different measurement units and have different health implications. Their numerical averages should not be compared directly as equivalent measures of risk.
+**Interpretation note:** Pollutants can have different measurement units, distributions, and health implications. Their numerical averages should not be compared directly as equivalent measures of risk.
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 AirAware/
 ├── README.md
 ├── .gitignore
+├── AirAware.Rproj
 ├── R/
 │   ├── 01_data_cleaning.R
 │   ├── 02_exploratory_analysis.R
 │   ├── 03_anomaly_detection.R
 │   └── 04_kmeans_clustering.R
 ├── data/
-│   └── CSV datasets and generated analysis results
+│   └── Local source and generated CSV files
 └── plots/
     ├── pollutant_counts.png
     ├── pollutant_averages.png
@@ -193,94 +225,102 @@ AirAware/
     └── air_quality_clusters.png
 ```
 
-The CSV files are not included in the initial Git upload. The directory structure above documents the project's local organization.
+The `data/` directory contains local datasets and generated analysis files. CSV files are excluded from the initial Git upload and therefore may not appear in the repository on GitHub.
 
-## 🚀 How to Run the Project
+## Installation and Usage
 
 ### Prerequisites
 
-Install:
+Install the following software:
 
-* R
-* RStudio
-* Git, if you plan to use Git from the terminal
+* [R](https://cran.r-project.org/)
+* [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+
+Git is required only if you intend to clone or manage the repository through Git.
 
 ### Step 1: Obtain the Dataset
 
-Download the air quality dataset from the official OGD platform and save it as:
+Download the air quality dataset from the official OGD resource.
+
+Create a `data/` directory in the project folder, if it does not already exist, and save the source CSV as:
 
 `data/air_quality_india.csv`
 
-Check the dataset's licence before redistributing the original file.
+Check the applicable licence before redistributing the original dataset or generated files containing source observations.
 
 ### Step 2: Open the Project
 
-Open the AirAware folder in RStudio or set it as your working directory.
+Open `AirAware.Rproj` in RStudio.
+
+Keep the expected project directory structure intact so the scripts can locate the input and output files.
 
 ### Step 3: Run the Scripts in Order
 
-Run the scripts in this sequence:
+Execute the following scripts sequentially:
 
 1. `R/01_data_cleaning.R`
 2. `R/02_exploratory_analysis.R`
 3. `R/03_anomaly_detection.R`
 4. `R/04_kmeans_clustering.R`
 
-Each script depends on the files or results produced by earlier stages.
+Each stage may depend on files generated by earlier stages. Run the cleaning script first and confirm that the expected output files are created before continuing.
 
 ### Step 4: Inspect the Results
 
-Review the generated CSV outputs in `data/` and visualizations in `plots/`.
+Review the generated CSV files in `data/` and the visualization images in `plots/`.
 
-Some scripts may need package installation or minor path adjustments depending on your R environment.
+If a script reports a missing file or package, inspect the error message and verify that the dataset is in the expected location and that the required R packages are installed.
 
-## ⚠️ Limitations
+The scripts may require minor adjustments if their file paths or dependencies differ from the local environment.
 
-* The analysis uses a downloaded snapshot of air quality observations rather than a continuous historical dataset.
-* Results describe the downloaded snapshot and should not be interpreted as current air quality readings.
-* Missing observations and incomplete station coverage may affect the analysis.
-* The IQR method identifies statistical outliers, not confirmed pollution incidents.
-* K-means results depend on feature selection, scaling, and the chosen number of clusters.
-* The clusters are exploratory groups and are not official air quality classifications.
-* Pollutant units and measurement conditions should be verified before making direct comparisons.
+## Limitations
+
+* The analysis uses a downloaded dataset snapshot rather than a continuous historical dataset.
+* The results describe that snapshot and do not represent current air quality conditions.
+* Missing observations and incomplete monitoring station coverage may affect the findings.
+* The IQR method flags statistical outliers and does not establish whether an observation represents an environmental emergency.
+* K-means results depend on feature selection, scaling, the chosen number of clusters, and the observations available.
+* Cluster labels are exploratory identifiers, not official air quality classifications.
+* Pollutant units and measurement conditions should be verified before interpreting numerical comparisons.
 * The analysis does not establish causal relationships or predict future air pollution levels.
+* Results depend on the quality, coverage, and reliability of the source observations.
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
-* Build an interactive dashboard for exploring air quality measurements.
-* Add geographic maps showing monitoring station locations.
-* Compare observations across dates when a suitable historical dataset is available.
-* Investigate additional anomaly detection methods.
-* Evaluate different clustering algorithms and cluster counts.
-* Explore time-series forecasting when reliable historical data becomes available.
-* Develop a more accessible interface for students and community users.
+* Develop an interactive dashboard for exploring pollutant measurements and station-level results.
+* Add geographic maps to visualize monitoring station locations.
+* Compare measurements across dates using a suitable historical dataset.
+* Investigate additional statistical and machine learning methods for anomaly detection.
+* Evaluate alternative clustering algorithms and cluster counts.
+* Explore time-series forecasting when reliable historical observations are available.
+* Improve reproducibility through dependency documentation and automated validation.
+* Develop an accessible interface for students and community users.
 
-## 📚 Learning Outcomes
+## Learning Outcomes
 
-Through AirAware, I explored:
+This project provided practical experience with:
 
 * Data cleaning and preprocessing in R.
 * Exploratory data analysis and descriptive statistics.
 * Data visualization.
-* Statistical anomaly detection using IQR.
+* Statistical anomaly detection using the IQR method.
 * Feature scaling and K-means clustering.
 * Interpretation of unsupervised machine learning results.
-* Organizing a data science project for reproducibility and version control.
+* Organizing a data analysis project using Git and GitHub.
 
-## 📄 Data Source, Licence, and Attribution
+## Data Attribution and Licensing
 
 **Dataset:** Real Time Air Quality Index from Various Locations
 **Provider:** Central Pollution Control Board (CPCB), Government of India
-**Source:** https://www.data.gov.in/resource/real-time-air-quality-index-various-locations
+**Official resource:** [data.gov.in](https://www.data.gov.in/resource/real-time-air-quality-index-various-locations)
 
-The licence applicable to the specific dataset resource must be verified before redistributing the raw dataset or derived files.
+The licence applicable to the specific dataset resource must be verified before redistributing the original dataset or generated files containing source data. Follow the applicable attribution and reuse conditions.
 
-Where required by the applicable licence, attribution and other licence conditions must be followed. AirAware is an independent educational project and is not affiliated with or endorsed by the Government of India or CPCB.
+AirAware is an independent educational project and is not affiliated with or endorsed by the Government of India or CPCB.
 
-## 👩‍💻 Author
+## Author
 
 **Shriya Dubey**
-
 B.Tech Computer Science and Engineering
 
 Interested in data science, machine learning, and technology for environmental and social impact.
