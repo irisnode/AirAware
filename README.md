@@ -26,6 +26,16 @@ The project aims to transform raw air quality observations into interpretable in
 
 ## Problem Statement
 
+## Problem Statement
+
+The air we breathe is something we often take for granted, yet its quality affects our health, our environment, and the lives of generations to come. Behind every air quality reading is a community exposed to its surroundings, often without a clear understanding of what those numbers mean.
+
+Although air quality monitoring stations collect valuable data, raw observations alone cannot always tell a meaningful story. Missing measurements, uneven monitoring coverage, and unusual readings can make it difficult to identify patterns and understand what the data reveals.
+
+AirAware aims to bridge this gap by transforming raw air quality observations into clearer, more interpretable insights. Through data cleaning, statistical analysis, anomaly detection, and machine learning, the project explores patterns in pollutant measurements and similarities between monitoring stations.
+
+**The goal is simple: to make air quality data more understandable, so that information about the air we breathe becomes a starting point for awareness, inquiry, and informed environmental action.**
+
 Air pollution is an important environmental and public health concern. Analysing air quality observations can be challenging because datasets may contain missing measurements, incomplete monitoring station coverage, and unusual values.
 
 AirAware explores how statistical analysis and unsupervised machine learning can help clean air quality data, summarize pollutant measurements, identify statistical outliers, and group monitoring stations with similar pollutant profiles.
