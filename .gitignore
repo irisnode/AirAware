@@ -1,0 +1,13 @@
+# Exclude downloaded data and generated CSV files until licensing is verified
+
+data/*.csv
+
+# R session files
+
+.Rhistory
+.RData
+.Ruserdata
+
+# RStudio local project settings
+
+.Rproj.user/
